@@ -1,5 +1,5 @@
 import axios from "axios";
-import ApiError from "../utils/ApiError.js";
+import {ApiError} from "../utils/ApiError.js";
 
 const PYTHON_SERVICE_URL = process.env.PYTHON_SERVICE_URL || "http://localhost:5000";
 

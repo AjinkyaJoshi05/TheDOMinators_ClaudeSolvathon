@@ -1,5 +1,5 @@
-import asyncHandler from "../utils/asyncHandler.js";
-import ApiResponse from "../utils/ApiResponse.js";
+import {asyncHandler} from "../utils/asyncHandler.js";
+import {ApiResponse} from "../utils/ApiResponse.js";
 import { callPythonService } from "../services/aiService.js";
 
 export const analyzeEvents = asyncHandler(async (req, res) => {

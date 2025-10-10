@@ -10,10 +10,10 @@ app.use(cors({
 }))
 
 // router import
-import analysisRoutes from "./routes/analysis.routes.js";
+import analysisRoutes from "./routes/analysis.router.js";
 
 
-// router usage
+// router usage 
 app.use("/api/analysis", analysisRoutes);
 
 
