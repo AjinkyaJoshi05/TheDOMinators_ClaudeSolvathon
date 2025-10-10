@@ -1,15 +1,15 @@
-import asyncHandler from "../utils/asyncHandler.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import { callPythonService } from "../services/aiService.js";
-import ApiResponse from "../utils/ApiResponse.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
 
 export const generateSyntheticDataset = asyncHandler(async (req, res) => {
   const {
     num_events = 1000,
     include_noise = true,
     missing_rate = 0.05,
-    particle_types = ["WIMP-like", "Axion-like", "Background"],
-    output_format = "json",
-    seed = null,
+    particle_types = ["WIMP-like","Axion-like","Background"],
+    output_format = "csv",  // default CSV
+    seed = null
   } = req.body;
 
   const response = await callPythonService("simulate", {
@@ -18,13 +18,10 @@ export const generateSyntheticDataset = asyncHandler(async (req, res) => {
     missing_rate,
     particle_types,
     output_format,
-    seed,
+    seed
   });
 
-  // Optional: Save metadata in MongoDB
-  // const dataset = await Dataset.create({ params: req.body, path: response.file_path });
-
-  return res
-    .status(200)
-    .json(new ApiResponse(200, response, "Synthetic dataset generated successfully"));
+  return res.status(200).json(
+    new ApiResponse(200, response, "Synthetic dataset generated successfully")
+  );
 });
