@@ -35,15 +35,34 @@ export function DataGeneratorForm({ className }: { className?: string }) {
     fileType: "JSON",
   })
   const [isGenerating, setIsGenerating] = React.useState(false)
-  const [fileUrl, setFileUrl] = React.useState<string | null>(null)
-  const [fileContent, setFileContent] = React.useState<string | null>(null)
+
+  const [fileUrl, setFileUrl] = React.useState<string>("")
+  const [fileContent, setFileContent] = React.useState<string>("")
+
+  // Load fileUrl from localStorage on mount and fetch content
+  React.useEffect(() => {
+    const savedUrl = localStorage.getItem("fileUrl")
+    if (savedUrl) {
+      setFileUrl(savedUrl)
+      fetch(savedUrl)
+        .then(res => res.text())
+        .then(text => setFileContent(text))
+        .catch(err => console.error("Failed to fetch saved file content:", err))
+    }
+  }, [])
+
+  // Save only fileUrl to localStorage
+  React.useEffect(() => {
+    if (fileUrl) localStorage.setItem("fileUrl", fileUrl)
+  }, [fileUrl])
 
   const onGenerate = async (e: React.FormEvent) => {
     e.preventDefault()
     if (state.rows < 1) return
+
     setIsGenerating(true)
-    setFileUrl(null)
-    setFileContent(null)
+    setFileUrl("")
+    setFileContent("")
 
     try {
       const res = await fetch("/api/generate-data", {
@@ -74,17 +93,6 @@ export function DataGeneratorForm({ className }: { className?: string }) {
         className,
       )}
     >
-      {/* Decorative energy strip */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 -top-px h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, color-mix(in oklch, var(--color-accent) 40%, transparent), color-mix(in oklch, var(--color-primary) 60%, transparent), color-mix(in oklch, var(--color-accent) 40%, transparent))",
-          animation: "eh-energy 6s ease-in-out infinite",
-          backgroundSize: "200% 100%",
-        }}
-      />
       <div className="space-y-2">
         <h2 className="text-2xl md:text-3xl">Cloud Solvathon: Echoes from the Invisible Universe</h2>
         <p className="text-muted-foreground leading-relaxed">
@@ -159,21 +167,6 @@ export function DataGeneratorForm({ className }: { className?: string }) {
 
         <div className="md:col-span-2 mt-2">
           <div className="relative inline-block">
-            <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-              <span
-                className="absolute -left-6 top-1/2 size-2 rounded-full"
-                style={{ background: "var(--color-primary)", filter: "blur(2px)", animation: "eh-pulse 1.6s ease-in-out infinite" }}
-              />
-              <span
-                className="absolute -right-5 -top-1 size-1.5 rounded-full"
-                style={{ background: "var(--color-accent)", filter: "blur(1.5px)", animation: "eh-pulse 2.2s ease-in-out infinite", animationDelay: "0.4s" }}
-              />
-              <span
-                className="absolute -right-10 bottom-0 size-1.5 rounded-full"
-                style={{ background: "var(--color-primary)", filter: "blur(1.5px)", animation: "eh-pulse 2s ease-in-out infinite", animationDelay: "0.8s" }}
-              />
-            </div>
-
             <EHButton
               type="submit"
               disabled={isGenerating}
