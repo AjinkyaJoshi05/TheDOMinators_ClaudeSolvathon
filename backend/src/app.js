@@ -9,5 +9,12 @@ app.use(cors({
     credentials : true
 }))
 
+// router import
+import analysisRoutes from "./routes/analysis.routes.js";
+
+
+// router usage
+app.use("/api/analysis", analysisRoutes);
+
 
 export { app }
