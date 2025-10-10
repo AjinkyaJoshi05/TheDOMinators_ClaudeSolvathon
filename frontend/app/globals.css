@@ -1,0 +1,174 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #08020a; /* Void Black */
+  --foreground: #f0f0f0; /* Star White */
+  --card: #0f0a12; /* Slightly lighter black */
+  --card-foreground: #f0f0f0;
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #e70b5c; /* Cosmic Glow */
+  --primary-foreground: #f0f0f0;
+  --secondary: #0f0a12;
+  --secondary-foreground: #f0f0f0;
+  --muted: #0f0a12;
+  --muted-foreground: #a8a8b3; /* Nebula Grey */
+  --accent: #9e3354; /* Plasma Ring */
+  --accent-foreground: #f0f0f0;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: #9e3354; /* Subtle plasma border */
+  --input: oklch(0.922 0 0);
+  --ring: #e70b5c;
+  --chart-1: #e70b5c; /* Cosmic Glow */
+  --chart-2: #9e3354; /* Plasma Ring */
+  --chart-3: #a8a8b3; /* Nebula Grey */
+  --chart-4: #0f0a12; /* Slightly lighter black */
+  --chart-5: #f0f0f0; /* Star White */
+  --radius: 0.75rem;
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: #08020a;
+  --foreground: #f0f0f0;
+  --card: #0f0a12;
+  --card-foreground: #f0f0f0;
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: #e70b5c;
+  --primary-foreground: #f0f0f0;
+  --secondary: #0f0a12;
+  --secondary-foreground: #f0f0f0;
+  --muted: #0f0a12;
+  --muted-foreground: #a8a8b3;
+  --accent: #9e3354;
+  --accent-foreground: #f0f0f0;
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: #9e3354;
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: #e70b5c;
+  --chart-2: #9e3354;
+  --chart-3: #a8a8b3;
+  --chart-4: #0f0a12;
+  --chart-5: #f0f0f0;
+  --radius: 0.75rem;
+  --sidebar: oklch(0.145 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-inter: "Inter", sans-serif;
+  --font-michroma: "Michroma", sans-serif;
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-inter); /* keep within 2 families */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.145 0 0);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: oklch(0.577 0.245 27.325);
+  --color-destructive-foreground: oklch(0.577 0.245 27.325);
+  --color-border: var(--border);
+  --color-input: oklch(0.922 0 0);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: oklch(1 0 0);
+  --color-sidebar-foreground: oklch(0.145 0 0);
+  --color-sidebar-primary: oklch(0.205 0 0);
+  --color-sidebar-primary-foreground: oklch(0.985 0 0);
+  --color-sidebar-accent: oklch(0.97 0 0);
+  --color-sidebar-accent-foreground: oklch(0.205 0 0);
+  --color-sidebar-border: oklch(0.922 0 0);
+  --color-sidebar-ring: oklch(0.708 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* Heading system: Michroma, uppercase, spaced */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-michroma), var(--font-inter), system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* Utilities for plasma glow and subtle energy effects */
+@layer utilities {
+  .eh-glow {
+    /* soft outer glow using ring tokens */
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--color-accent) 60%, transparent), 0 0 24px
+      color-mix(in oklch, var(--color-primary) 30%, transparent);
+  }
+  .eh-inner {
+    box-shadow: inset 0 0 18px color-mix(in oklch, var(--color-accent) 35%, transparent);
+  }
+  .eh-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+/* Animated gradient bar for loaders and progress */
+@keyframes eh-energy {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glowing hover “pulse” */
+@keyframes eh-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklch, var(--color-primary) 40%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 24px 8px color-mix(in oklch, var(--color-primary) 0%, transparent);
+  }
+}
