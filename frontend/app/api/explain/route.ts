@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
     const { datasetPath, userPrompt } = body
 
     // Replace with your real API endpoint
-    const EXPLAIN_SERVICE_URL = process.env.Explain_URL;
+    const EXPLAIN_SERVICE_URL = process.env.NEXT_PUBLIC_Explain_URL;
     const llmResponse = await fetch(`${EXPLAIN_SERVICE_URL}/explain`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

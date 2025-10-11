@@ -62,7 +62,7 @@ export default function Page() {
 
     setIsAnalyzing(true)
 
-    const ANALYZE_SERVICE_URL = process.env.Analyze_URL;
+    const ANALYZE_SERVICE_URL = process.env.NEXT_PUBLIC_Analyze_URL;
 
     try {
       const res = await fetch(`${ANALYZE_SERVICE_URL}/analyze`, {
