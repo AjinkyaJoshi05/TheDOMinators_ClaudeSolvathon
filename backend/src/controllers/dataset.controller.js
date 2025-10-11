@@ -27,7 +27,7 @@ export const generateSyntheticDataset = asyncHandler(async (req, res) => {
     missingPct = 0,
     eventType = "WIMP-like",
     fileType = "JSON",
-    mock = false, // ✅ default false
+    mock = false,
   } = req.body;
 
   cleanupOldFiles();
@@ -55,7 +55,7 @@ export const generateSyntheticDataset = asyncHandler(async (req, res) => {
   const filename = `${datasetId}.${extension}`;
   const filepath = path.join(NODE_TEMP_FOLDER, filename);
 
-  // Save dataset file in Node temp folder
+  // Save dataset locally
   fs.writeFileSync(filepath, response.data, "utf-8");
 
   return res.status(200).json(
@@ -63,9 +63,9 @@ export const generateSyntheticDataset = asyncHandler(async (req, res) => {
       200,
       {
         metadata: response.metadata,
-        file_url: `/temp/${filename}`, // ✅ frontend will use backend host
+        file_url: `/temp/${filename}`, // frontend can fetch from this URL
       },
-      "Synthetic dataset generated and stored successfully."
+      "Synthetic dataset generated successfully."
     )
   );
 });

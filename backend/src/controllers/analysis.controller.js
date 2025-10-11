@@ -17,7 +17,7 @@ export const analyzeDataset = asyncHandler(async (req, res) => {
     : path.join(process.cwd(), datasetPath);
 
   const response = await callPythonService("classify", {
-    dataset_path: absolutePath
+    dataset_path: absolutePath,
   });
 
   return res
