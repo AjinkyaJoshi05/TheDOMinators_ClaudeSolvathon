@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import dotenv from "dotenv"
-dotenv.config()
+
 
 export async function POST(req: NextRequest) {
   try {

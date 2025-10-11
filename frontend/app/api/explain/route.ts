@@ -1,25 +1,47 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json()
-    const { datasetPath, userPrompt } = body
+    const body = await req.json();
+    const { datasetPath, userPrompt, analysisData } = body;
 
-    // Replace with your real API endpoint
-    const EXPLAIN_SERVICE_URL = process.env.Explain_URL;
-    const llmResponse = await fetch(`${EXPLAIN_SERVICE_URL}/explain`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ datasetPath, userPrompt }),
-    })
+    if (!process.env.EXPLAIN_SERVICE_URL) {
+      return NextResponse.json(
+        { error: "EXPLAIN_SERVICE_URL not set in .env.local" },
+        { status: 500 }
+      );
+    }
 
-    if (!llmResponse.ok)
-      throw new Error(`Explain API returned ${llmResponse.status}`)
+    // Call upstream explain service
+    const response = await fetch(
+      `${process.env.EXPLAIN_SERVICE_URL}/api/explain/explain`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ datasetPath, userPrompt, analysisData }),
+      }
+    );
 
-    const data = await llmResponse.json()
-    return NextResponse.json(data)
-  } catch (err) {
-    console.error("Error in explain API:", err)
-    return NextResponse.json({ error: "Failed to get explanation" }, { status: 500 })
+    const text = await response.text();
+    let data: any;
+    try {
+      data = text ? JSON.parse(text) : {};
+    } catch {
+      data = text;
+    }
+
+    if (!response.ok) {
+      // Log upstream error
+      console.error("Upstream Explain API error:", response.status, data);
+      return NextResponse.json(
+        { error: "Upstream Explain API error", status: response.status, detail: data },
+        { status: 502 }
+      );
+    }
+
+    return NextResponse.json(data);
+  } catch (err: any) {
+    console.error("Explain API route failed:", err);
+    return NextResponse.json({ error: "Explain API route failed", detail: String(err) }, { status: 500 });
   }
 }
