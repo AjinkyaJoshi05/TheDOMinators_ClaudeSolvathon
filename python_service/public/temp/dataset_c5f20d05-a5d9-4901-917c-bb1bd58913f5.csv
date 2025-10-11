@@ -1,0 +1,6 @@
+event_id,detector_position_x,detector_position_y,detector_position_z,time_of_event,mass,velocity,SNR,overlapping_signal_flag,recoil_type,S1,S2,recoil_energy,pulse_shape_detectors,particle_type,event_category
+1,1.2,2.3,3.4,1616276400,100.0,120.0,24.5,0,Nuclear Recoil,100.0,200.0,30.0,0.8,WIMP,WIMP LIKE
+2,4.5,6.7,8.9,1616276401,120.0,110.0,27.2,0,Nuclear Recoil,120.0,220.0,35.0,0.85,WIMP,WIMP LIKE
+3,9.1,10.2,11.3,1616276402,110.0,105.0,26.8,1,Nuclear Recoil,110.0,210.0,33.0,0.82,WIMP,WIMP LIKE
+4,,6.7,8.9,1616276403,130.0,115.0,28.1,0,,130.0,230.0,37.0,0.87,WIMP,WIMP LIKE
+5,1.2,2.3,,1616276404,115.0,108.0,,0,Nuclear Recoil,115.0,215.0,34.0,0.83,WIMP,WIMP LIKE

@@ -1,0 +1,6 @@
+event_id,detector_position_x,detector_position_y,detector_position_z,time_of_event,mass,velocity,SNR,overlapping_signal_flag,recoil_type,S1,S2,recoil_energy,pulse_shape_detectors,particle_type
+1,12.34,56.78,90.12,1649694000,0.511,0.0021,3.45,0,NR,1000,2000,10.5,1,
+2,34.56,78.9,12.34,1649694001,0.938,0.0032,4.67,0,ER,1200,3000,20.3,1,electron
+3,56.78,12.34,34.56,1649694002,1.873,0.0043,2.89,1,NR,800,1500,15.7,0,proton
+4,78.9,34.56,56.78,1649694003,3.727,0.0054,5.12,0,ER,1500,4000,30.1,1,alpha
+5,12.34,56.78,90.12,1649694004,1.372,0.0065,3.34,1,NR,900,2200,18.2,0,muon

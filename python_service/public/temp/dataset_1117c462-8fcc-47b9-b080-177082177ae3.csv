@@ -1,0 +1,6 @@
+event_id,detector_position_x,detector_position_y,detector_position_z,time_of_event,mass,velocity,SNR,overlapping_signal_flag,recoil_type,S1,S2,recoil_energy,pulse_shape_detectors,particle_type
+1,146.2,54.7,23.1,1653792453.2,78.3,0.056,12.7,0,NR,72.4,188.2,12.5,0.78,neutron
+2,85.1,178.3,112.4,1653792454.1,0.0,0.112,8.5,0,ER,34.7,256.1,5.1,0.62,electron
+3,201.3,99.6,65.8,1653792455.0,112.4,0.078,15.1,1,NR,91.2,142.9,18.3,0.84,neutron
+4,156.7,23.4,134.2,1653792456.1,0.0,0.0,0.0,0,ER,0.0,0.0,0.0,0.0,electron
+5,77.2,134.5,89.6,1653792457.0,56.8,0.065,11.4,0,NR,68.9,210.5,9.7,0.72,neutron
