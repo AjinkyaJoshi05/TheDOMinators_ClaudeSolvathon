@@ -62,8 +62,10 @@ export default function Page() {
 
     setIsAnalyzing(true)
 
+    const ANALYZE_SERVICE_URL = process.env.Analyze_URL;
+
     try {
-      const res = await fetch("/api/analysis/analyze", {
+      const res = await fetch(`${ANALYZE_SERVICE_URL}/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // NOTE: In a real app, you'd send fileContent, not just filePath
